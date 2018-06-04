@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse"
+          name="main"
+          trace="enable"
+          statistics="enable">
+    <in>
+    </in>
+    <out>
+        <!--<log level="full"/>-->
+    </out>
+</sequence>

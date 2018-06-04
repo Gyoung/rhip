@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="zoe-fault" trace="enable">
+    <!--<property name="FAULTS_AS_HTTP_200" value="TRUE" scope="axis2"/>-->
+    <makefault response="true" version="pox">
+        <code expression="get-property('ERROR_CODE')"/>
+        <reason expression="get-property('ERROR_MESSAGE')"/>
+    </makefault>
+    <!-- Drops the messages by default if there is a fault -->
+    <persistence-log serialize="json" level="full" sendSequence="persistence-log-seq">
+    </persistence-log>
+    <property name="messageType" value="application/json" scope="axis2"/>
+    <send/>
+    <drop/>
+</sequence>

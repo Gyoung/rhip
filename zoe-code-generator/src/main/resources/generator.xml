@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>
+        代码生成器配置文件:
+        1.会为所有的property生成property_dir属性,如pkg=com.company => pkg_dir=com/company
+        2.可以引用环境变量: ${env.JAVA_HOME} or System.properties: ${user.home},property之间也可以相互引用
+    </comment>
+
+    <entry key="basepackage">cn.com.zoesoft</entry>
+
+    <entry key="author">zengjiyang</entry>
+
+    <entry key="namespace">sys</entry>
+
+    <!--输出目录-->
+    <entry key="outRoot">generator-output</entry>
+
+    <!--需要移除的表名前缀-->
+    <entry key="tableRemovePrefixes">CS_,CM_,PHIP_,GW_</entry>
+
+    <!--数据库相关设置-->
+    <entry key="jdbc_username">zysys</entry>
+    <entry key="jdbc_password">zy2009phoenix</entry>
+    <entry key="databaseType">oracle</entry>
+    <!--Mysql-->
+    <!--<entry key="jdbc_url">jdbc:mysql://192.168.2.39:3306/demo?useUnicode=true&amp;characterEncoding=UTF-8</entry>-->
+    <!--<entry key="jdbc_driver">com.mysql.jdbc.Driver</entry>-->
+
+
+    <!--Oracle jdbc:oracle:thin:@192.168.1.54:1521:ORA11G-->
+    <entry key="jdbc_url">jdbc:oracle:thin:@192.168.2.238:1521:PH</entry>
+    <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>
+
+    <!--oracle需要指定jdbc.schema,其它数据库忽略此项配置-->
+    <entry key="jdbc_schema">ZYEMR</entry>
+    <entry key="jdbc_catalog">ORA11G</entry>
+
+    <!-- 数据库类型映射  -->
+    <!--<entry key="java_typemapping.java.sql.Timestamp">java.util.Date</entry>-->
+    <!--<entry key="java_typemapping.java.sql.Date">java.util.Date</entry>-->
+    <!--<entry key="java_typemapping.java.sql.Time">java.util.Date</entry>	-->
+    <!--<entry key="java_typemapping.java.lang.Byte">Integer</entry>-->
+    <!--<entry key="java_typemapping.java.lang.Short">Integer</entry>-->
+    <!--<entry key="java_typemapping.java.math.BigDecimal">Long</entry>-->
+
+
+</properties>

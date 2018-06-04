@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.service.service.ssp.phip.zoe.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ISspControlServiceService" targetNamespace="http://webservice.service.service.ssp.phip.zoe.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.service.service.ssp.phip.zoe.com/" elementFormDefault="unqualified" targetNamespace="http://webservice.service.service.ssp.phip.zoe.com/" version="1.0">
+
+            <xs:element name="applySynapseSetting" type="tns:applySynapseSetting"/>
+
+            <xs:element name="applySynapseSettingResponse" type="tns:applySynapseSettingResponse"/>
+
+            <xs:element name="publishService" type="tns:publishService"/>
+
+            <xs:element name="publishServiceResponse" type="tns:publishServiceResponse"/>
+
+            <xs:element name="verifyServiceSerct" type="tns:verifyServiceSerct"/>
+
+            <xs:element name="verifyServiceSerctResponse" type="tns:verifyServiceSerctResponse"/>
+
+            <xs:complexType name="applySynapseSetting">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="applySynapseSettingResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="publishService">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="publishServiceResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="verifyServiceSerct">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+                    <xs:element name="arg1" type="xs:int"/>
+                    <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="verifyServiceSerctResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="publishService">
+        <wsdl:part element="tns:publishService" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="publishServiceResponse">
+        <wsdl:part element="tns:publishServiceResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="applySynapseSettingResponse">
+        <wsdl:part element="tns:applySynapseSettingResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="verifyServiceSerctResponse">
+        <wsdl:part element="tns:verifyServiceSerctResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="applySynapseSetting">
+        <wsdl:part element="tns:applySynapseSetting" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="verifyServiceSerct">
+        <wsdl:part element="tns:verifyServiceSerct" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="ISspControlService">
+        <wsdl:operation name="applySynapseSetting">
+            <wsdl:input message="tns:applySynapseSetting" name="applySynapseSetting">
+            </wsdl:input>
+            <wsdl:output message="tns:applySynapseSettingResponse" name="applySynapseSettingResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="publishService">
+            <wsdl:input message="tns:publishService" name="publishService">
+            </wsdl:input>
+            <wsdl:output message="tns:publishServiceResponse" name="publishServiceResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="verifyServiceSerct">
+            <wsdl:input message="tns:verifyServiceSerct" name="verifyServiceSerct">
+            </wsdl:input>
+            <wsdl:output message="tns:verifyServiceSerctResponse" name="verifyServiceSerctResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ISspControlServiceServiceSoapBinding" type="tns:ISspControlService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="applySynapseSetting">
+            <soap:operation soapAction="applySynapseSetting" style="document"/>
+            <wsdl:input name="applySynapseSetting">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="applySynapseSettingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="publishService">
+            <soap:operation soapAction="publishService" style="document"/>
+            <wsdl:input name="publishService">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="publishServiceResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="verifyServiceSerct">
+            <soap:operation soapAction="verifyServiceSerct" style="document"/>
+            <wsdl:input name="verifyServiceSerct">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="verifyServiceSerctResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ISspControlServiceService">
+        <wsdl:port binding="tns:ISspControlServiceServiceSoapBinding" name="ISspControlServicePort">
+            <soap:address location="http://localhost:8089/com.zoe.phip.ssp.service.service.webservice.ISspControlService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

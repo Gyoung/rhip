@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="persistence-log-seq" trace="enable">
+    <header action="set" name="Action" value="addServiceJournal"/>
+    <payloadFactory>
+        <format>
+            <ws:addServiceJournal xmlns:ws="http://webservice.journal.service.ssp.phip.zoe.com/">
+                <message xmlns="">$1</message>
+            </ws:addServiceJournal>
+        </format>
+        <args>
+            <arg expression="base64Encode(get-property('zoe.persistence.log'))"/>
+        </args>
+    </payloadFactory>
+    <!--
+    <log level="full"/>
+    -->
+    <send>
+        <endpoint>
+            <address uri="http://localhost:7087/com.zoe.phip.ssp.service.journal.webservice.IJournalService" format="soap11"/>
+        </endpoint>
+    </send>
+</sequence>

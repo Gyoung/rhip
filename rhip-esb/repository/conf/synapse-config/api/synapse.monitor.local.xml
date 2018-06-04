@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="synapse.monitor" context="/synapse/monitor">
+    <resource url-mapping="/getSystemStartTimeMillis" methods="GET" faultSequence="zoe-fault">
+        <inSequence onError="zoe-fault">
+            <header name="Action" value="urn:getSystemStartTimeMillis"/>
+            <payloadFactory>
+                <format>
+                    <ext:getSystemStartTimeMillis xmlns:ext="http://org.apache.synapse/xsd">
+                    </ext:getSystemStartTimeMillis>
+                </format>
+                <args>
+                </args>
+            </payloadFactory>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:18280/services/SynapseMonitor"
+                             format="soap11"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence onError="zoe-fault">
+            <payloadFactory>
+                <format>
+                    <text xmlns="http://ws.apache.org/commons/ns/payload">$1</text>
+                </format>
+                <args>
+                    <arg xmlns:mz="http://www.zoesoft.com.cn/" expression="mz:xml-cdata(self::node()//child::text())"/>
+                </args>
+            </payloadFactory>
+            <property name="messageType" value="text/plain" scope="axis2"/>
+            <send/>
+        </outSequence>
+    </resource>
+</api>

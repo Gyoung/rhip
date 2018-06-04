@@ -1,0 +1,66 @@
+<#assign className = table.className>
+<#assign baseDaoName="com.zoe.phip.module.service">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${basepackage}.dao.这里要自己改.I${className}Dao">
+<resultMap id="BaseResultMap" type="${basepackage}.model.这里要自己改.${className}">
+    <#list table.columns as field>
+       <#assign javaType="${field.javaType}">
+       <#assign jdbcType="${field.jdbcType}">
+     <#if field.javaType=="java.sql.Date">
+       <#assign javaType="java.sql.Timestamp">
+       <#assign jdbcType="TIMESTAMP">
+     </#if>
+     <#if field.javaType=="java.sql.Clob">
+       <#assign javaType="java.lang.String">
+        <result column="${field.sqlName}" property="${field.entityName?uncap_first}" javaType="${javaType}"
+        jdbcType="${jdbcType?upper_case}" typeHandler="com.zoe.phip.module.service.support.OracleClobTypeHandler"/>
+     <#else>
+      <result column="${field.sqlName}" property="${field.entityName?uncap_first}" javaType="${javaType}"
+        jdbcType="${jdbcType?upper_case}"/>
+     </#if>
+    </#list>
+</resultMap>
+
+<insert id="add" parameterType="${basepackage}.model.这里要自己改.${className}">
+INSERT INTO  <include refid="common.zyemr"/>${table.sqlName}(
+<#list table.columns as field>
+${field.sqlName}<#if field_has_next>,</#if></#list>)
+        VALUES(
+<#list table.columns as field>
+    <#assign jdbcType="${field.jdbcType}">
+    <#if field.javaType=="java.sql.Date">
+      <#assign jdbcType="TIMESTAMP">
+    </#if>
+    <#assign item="">
+    <#if field.entityName?uncap_first=="validFlag">
+        <#assign item="1">
+    <#elseif field.entityName?uncap_first=="createTime">
+        <#assign item="sysdate">
+    <#elseif field.entityName?uncap_first=="modifyTime">
+        <#assign item="sysdate">
+     <#else>
+        <#assign item="${r'#'}{${field.entityName?uncap_first},jdbcType=${jdbcType?upper_case}}">
+    </#if>
+        ${item}<#if field_has_next>,</#if>
+        </#list>)
+        </insert>
+
+<update id="update" parameterType="${basepackage}.model.这里要自己改.${className}">
+UPDATE  <include refid="common.zyemr"/>${table.sqlName}
+<set>
+    <#list table.columns as field>
+     <#assign jdbcType="${field.jdbcType}">
+      <#if field.javaType=="java.sql.Date">
+      <#assign jdbcType="TIMESTAMP">
+      </#if>
+    <if test="${field.entityName?uncap_first} != null">
+        ${field.sqlName} = ${r'#'}{${field.entityName?uncap_first},jdbcType=${jdbcType?upper_case}}<#if field_has_next>,</#if>
+    </if>
+</#list>
+        </set>
+        WHERE
+        <!-- 根据主键更新 -->
+        </update>
+
+</mapper>

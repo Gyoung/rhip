@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="SynapseMonitor" scope="transportsession">
+    <schema schemaNamespace="http://org.apache.synapse/xsd"
+            elementFormDefaultQualified="true"/>
+    <transports>
+        <transport>http</transport>
+    </transports>
+    <description>
+        This service will give info on ProxyServices.
+    </description>
+    <messageReceivers>
+        <messageReceiver mep="http://www.w3.org/ns/wsdl/robust-in-only"
+                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"
+                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
+                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+    <parameter name="ServiceClass">cn.com.zoesoft.rhip.esb.services.SynapseMonitorImpl</parameter>
+</service>

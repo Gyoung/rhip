@@ -1,0 +1,25 @@
+** 调试模式
+
+1. 添加 ZoeSynapseServer 到IDEA
+
+2. 设置 VM options
+
+-server
+-Xms600m
+-Xmx600m
+-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XMLGrammarCachingConfiguration
+-Djava.endorsed.dirs=lib/endorsed
+-Djava.io.tmpdir=work/temp/synapse
+
+3. 设置 Program arguments (最后一个参数即客户端提供的webservice地址，需要与ssp-client提供的一致)
+
+repository
+repository/conf/axis2-debug.xml
+.
+repository/conf/synapse-config
+repository
+localhost:7087
+
+4. 调整 Working directory 至 phip-ssp-synapse 目录下
+
+源代码根目录\zoe-phip-ssp\2.client\phip-ssp-synapse
